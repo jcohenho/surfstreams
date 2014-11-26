@@ -1,11 +1,11 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script src="jwplayer.js"></script>
 <script> jwplayer.key="YS4xpgH6/2TvlkxzmcyourFpS9w0jKSbd8cRcA==";</script>
@@ -55,17 +55,46 @@ function newone(cameraStream) {
 jQuery(function(){
 
     $("#pismo").click(function(){
-        pismo_stream();
+        cam_stream(5065);
     });
 
     $("#morro").click(function(){
+        cam_stream(4193);
         morro_stream();
     });
-
-    function pismo_stream()
+    
+     $("#ocean_beach").click(function(){
+        cam_stream(4128);
+    });
+    
+    $("#ventura").click(function(){
+        cam_stream(4200);
+    });
+    
+    $("#ventura_harbor").click(function(){
+         cam_stream(4201);
+    });
+    
+    $("#county_line").click(function(){
+        cam_stream(4203);
+    });
+    
+    $("#malibu").click(function(){
+         cam_stream(4209);
+    });
+    
+    $("#topanga").click(function(){
+         cam_stream(4210);
+    });
+    
+    $("#venice").click(function(){
+         cam_stream(4211);
+    });
+    
+    function cam_stream(id)
     {
         jQuery.ajax({
-            url:"http://api.surfline.com/v1/cams/5065",
+            url:"http://api.surfline.com/v1/cams/" + id,
             type: "GET",
             dataType: "jsonp",
             success : function(responseData){
@@ -80,25 +109,7 @@ jQuery(function(){
             }
         });
     }
-
-    function morro_stream()
-    {
-        jQuery.ajax({
-            url:"http://api.surfline.com/v1/cams/4193",
-            type: "GET",
-            dataType: "jsonp",
-            success : function(responseData){
-
-                    console.log(responseData)
-                    var data = responseData.streamInfo.stream[0];
-                    newone(data.file);
-            },
-
-            error : function(err){
-                 console.log("ERR", err);
-            }
-        });
-    }
+    
 
 });
 
@@ -111,6 +122,20 @@ Preset RTMP Streams:
 <input type="button" id="morro" name="morro" value="morro" />
 
 <input type="button" id="pismo" name="pismo" value="pismo" />
+
+<input type="button" id="ocean_beach" name="ocean_beach" value="ocean beach" />
+
+<input type="button" id="ventura" name="ventura" value="ventura" />
+
+<input type="button" id="ventura_harbor" name="ventura_harbor" value="ventura harbor" />
+
+<input type="button" id="county_line" name="county_line" value="county line" />
+
+<input type="button" id="malibu" name="malibu" value="malibu" />
+
+<input type="button" id="topanga" name="topanga" value="topanga" />
+
+<input type="button" id="venice" name="venice" value="venice" />
 
 <div id="player"> </div>
 
